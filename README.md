@@ -1,3 +1,3 @@
 # GPC
 Competitive Programming
-Repositorio de Jean Pierre Barcia Ruidias de Programación Competitiva
+Repositorio de Jean Pierre Barcia de Programación Competitiva
