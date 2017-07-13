@@ -1,0 +1,50 @@
+#include <bits/stdc++.h>
+using namespace std;
+typedef long long ll;
+const ll MAX = 999999999999999LL;
+ll dp[310][310];
+ll vec[50][2];
+ll n, target;
+
+ll rec(ll a, ll b) {
+    
+    if(a == 0 && b == 0)
+        return 0;
+    
+    if(dp[a][b] != -1)
+        return dp[a][b];
+    
+    ll ans = MAX;
+    for(int i = 0; i < n; i++) {
+        int ta = a - vec[i][0];
+        int tb = b - vec[i][1];
+        if(ta >= 0 && tb >= 0)
+            ans = min(ans, 1 + rec(ta, tb));
+    }
+    return dp[a][b] = ans;
+}
+
+int main() {
+	int cas;
+	cin >> cas;
+	while(cas--) {
+        memset(dp, -1, sizeof dp);
+        cin >> n >> target;
+        target = target * target;
+        for(int i = 0; i < n; i++)
+            cin >> vec[i][0] >> vec[i][1];
+        ll ans = MAX;
+        for(int i = 0; i <= 300; i++)
+            for(int k = 0; k <= 300; k++)
+                if(target == (i*i + k*k))
+                    ans = min(ans, rec(i, k));
+        
+        if(ans != MAX) 
+            cout << ans;
+        else
+            cout << "not possible";
+        cout << endl;
+	}
+	return 0;
+}
+
